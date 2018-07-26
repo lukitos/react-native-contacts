@@ -1,8 +1,9 @@
-import React, { PureComponent } from 'react';
-import { StyleSheet, TouchableOpacity, FlatList, Text } from 'react-native';
+import React, { Fragment, PureComponent } from 'react';
+import { StyleSheet, View, TouchableOpacity, FlatList, Text, Image } from 'react-native';
 import axios from 'axios';
 
 const API_URL = 'https://jsonplaceholder.typicode.com/users';
+const thumbImage = 'https://cdn0.iconfinder.com/data/icons/typicons-2/24/contacts-512.png';
 
 class Home extends PureComponent {
   constructor(props) {
@@ -23,8 +24,12 @@ class Home extends PureComponent {
         style={styles.listContainer}
         onPress={() => navigate('Detail', item)}
       >
-        <Text>{item.name}</Text>
-        <Text>{item.email}</Text>
+        <View style={{ flex: 1, flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text>{item.name}</Text>
+          <View style={{ width: 25, height: 20 }}>
+            <Text style={{ fontSize: 20, color: 'gray' }}>&gt;</Text>
+          </View>
+        </View>
       </TouchableOpacity>
     )
   }
@@ -33,11 +38,19 @@ class Home extends PureComponent {
     const { users } = this.state;
 
     return(
-      <FlatList
-        data={users}
-        renderItem={({item}) => this.contactItem(item)}
-        keyExtractor={(item) => item.id.toString()}
-      />
+      <Fragment>
+        <View style={styles.thumbnailContainer}>
+          <Image
+            style={styles.thumbnailStyle}
+            source={{uri: thumbImage}}
+          />
+        </View>
+        <FlatList
+          data={users}
+          renderItem={({item}) => this.contactItem(item)}
+          keyExtractor={(item) => item.id.toString()}
+        />
+      </Fragment>
     );
   }
   
@@ -52,5 +65,15 @@ const styles = StyleSheet.create({
     borderColor: 'lightgray', 
     borderBottomWidth: 1,
     backgroundColor: 'white',
-  }
+  },
+  thumbnailContainer: {
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ff8c00',
+  },
+  thumbnailStyle: {
+    height: 100,
+    width: 100,
+  },
 });

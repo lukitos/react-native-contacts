@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
-const thumbImage = 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSB_aaFnRzeMzJpHEAHvc3LC52mLtOfBnDfrQF-_2Re-zXYAKoSgQ';
+const thumbImage = 'https://upload.wikimedia.org/wikipedia/commons/e/e4/Elliot_Grieveson.png';
 
 const Detail = (props) => {
   const { name, username, phone, email, website } = props.navigation.state.params;
@@ -15,11 +15,11 @@ const Detail = (props) => {
         />
       </View>
       <View>
-        <Text style={styles.dataContainer}>{username}</Text>
-        <Text style={styles.dataContainer}>{name}</Text>
-        <Text style={styles.dataContainer}>{phone}</Text>
-        <Text style={styles.dataContainer}>{email}</Text>
-        <Text style={styles.dataContainer}>{website}</Text>
+        <Text style={styles.titleStyle}>{name}</Text>
+        <Text style={styles.dataStyle}>{phone}</Text>
+        <Text style={styles.dataStyle}>{email}</Text>
+        <Text style={styles.dataStyle}>Username: {username}</Text>
+        <Text style={styles.dataStyle}>Website: {website}</Text>
       </View>
     </Fragment>
   );
@@ -31,19 +31,29 @@ const styles = StyleSheet.create({
   container: {
     padding: 25,
   },
-  dataContainer: {
+  dataStyle: {
     padding: 15,
     borderColor: 'lightgray', 
     borderWidth: 1,
+  },
+  titleStyle: {
+    padding: 15,
+    textAlign: 'center',
+    color: '#696969',
+    fontSize: 18,
+    fontWeight: 'bold',
+    borderColor: 'lightgray', 
+    borderWidth: 1,
+    backgroundColor: 'white',
   },
   thumbnailContainer: {
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'white',
+    backgroundColor: '#9ACD32',
   },
   thumbnailStyle: {
-    height: 100,
-    width: 100,
+    height: 80,
+    width: 80,
   },
 });
